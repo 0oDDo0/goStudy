@@ -1,9 +1,9 @@
 # goStudy 
-学习Go笔记  
+瀛︿範绗旇
 
-+ 学习网站  
++ 瀛︿範缃戝潃 
 https://github.com/astaxie/build-web-application-with-golang/blob/master/zh/preface.md  
 https://wizardforcel.gitbooks.io/golang-doc/content/1.html
 
-+ import机制  
++ import
 http://tonybai.com/2015/03/09/understanding-import-packages/
