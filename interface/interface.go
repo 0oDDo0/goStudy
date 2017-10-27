@@ -76,7 +76,6 @@ func testInterface()  {
 	x := make([]Men, 2)
 	//这三个都是不同类型的元素，但是他们实现了interface同一个接口
 	x[0], x[1] = student, employee
-
 	for index,value := range x{
 		// 只能调用相应的接口, 不能使用student的属性
 		value.SayHi()

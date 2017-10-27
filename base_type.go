@@ -4,7 +4,13 @@ package main
 import (
 	"fmt"
 	"errors"
+	"github.com/orcaman/concurrent-map"
 )
+/*
+默认的行为:
+	1 大写字母开头的变量是可导出的, 也就是其它包可以读取的, 是公有变量; 小写字母开头的就是不可导出的, 是私有变量;
+	2 大写字母开头的函数也是一样, 相当于class中的带public关键词的公有函数；小写字母开头的就是有private关键词的私有函数。
+*/
 
 /* learn 内置类型 */
 
@@ -170,6 +176,23 @@ func func_map() {
 		fmt.Println(fmap1, fmap2)
 	}
 }
+
+/*
+线程安全map(加了锁的map)
+将存储区域分片, 每片使用一把锁, 提升效率,
+*/
+func study()  {
+	var dict cmap.ConcurrentMap = cmap.New()
+	tmp := make(map[string]int)
+	tmp["key1"] = 1
+	tmp["key2"] = 2
+	dict.Set("key1", "value1")
+	dict.Set("key2", 2)
+	dict.Set("key3", tmp)
+	fmt.Println(dict.Get("key3"))
+	fmt.Println(dict.GetShard("key3"))
+}
+
 
 func func_default()  {
 	/*

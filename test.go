@@ -1,34 +1,29 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"unicode/utf8"
+	"bytes"
+)
 
-type human struct {
-	name string
-}
-
-func (h human)say() bool {
-	fmt.Println("my name is", h.name)
-	return false
-}
-
-
-func (h human)speak() bool {
-	fmt.Println("speak, my name is", h.name)
-	return false
-}
-
-// 测试只实现借口中的一个方法, 还算不算基类, 结果, 必须实现interface中的全部方法
-type human_interface interface {
-	say() bool
-	// song()
-}
-
-func TestInterface()  {
-	var a human_interface
-	a = human{"ljs"}
-	a.say()
+func FilterEmoji(str string) string {
+	if str == ""{
+		return ""
+	}
+	var new_content bytes.Buffer
+	new_content.Grow(len(str))
+	for _, value := range str {
+		if _, size := utf8.DecodeRuneInString(string(value));size <= 3 {
+			new_content.WriteRune(value)
+		}
+	}
+	return new_content.String()
 }
 
 func main() {
-	TestInterface()
+	value := 2
+	if value := 1; value > 0 {
+		fmt.Println(value)
+	}
+	fmt.Println(value)
 }
