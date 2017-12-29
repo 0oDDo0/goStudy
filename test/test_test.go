@@ -1,8 +1,8 @@
 package test
 
 import (
-	"testing"
 	"fmt"
+	"testing"
 )
 
 /*
@@ -37,7 +37,7 @@ func TestA(t *testing.T) {
 	}
 }
 
-func fun(s string) string{
+func fun(s string) string {
 	return s
 }
 func TestB(t *testing.T) {
@@ -54,14 +54,14 @@ func TestB(t *testing.T) {
 	}
 }
 
-// 测试一个函数的平均执行时间
+// 测试一个函数的平均执行时间, benchmark=基准评测程序, 测效
 func BenchmarkC(b *testing.B) {
 	b.SetParallelism(10000) // 也可以不设置并行数量, Go会选择最优值
-	for i := 1; i < 10000;  {
+	for i := 1; i < b.N; {
 		i++
 	}
 	/*
-	result BenchmarkC    10000000    282 ns/op
-	意味着循环执行了 10000000 次, 每次循环花费 282 纳秒(ns)。
-	 */
+		result BenchmarkC    10000000    282 ns/op
+		意味着循环执行了 10000000 次, 每次循环花费 282 纳秒(ns)。
+	*/
 }

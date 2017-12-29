@@ -1,8 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"encoding/json"
+	"fmt"
 	"reflect"
 )
 
@@ -23,13 +23,14 @@ type Books struct {
 	subject string
 	book_id int
 }
-func testBooks()  {
+
+func testBooks() {
 	/* 声明 Book1 为 Books 类型 */
 	var Book1 Books
 	/* 声明 Book2 为 Books 类型, 按照顺序提供初始化值 */
 	var Book2 = Books{"Python", "www.python.com", "Python 教程", 2}
 	/* 通过field:value的方式初始化, 这样可以任意顺序 */
-	Book3 := Books{title:"c++", book_id:3}
+	Book3 := Books{title: "c++", book_id: 3}
 	/* 通过new函数分配一个指针, 类型为*Books */
 	var Book4 *Books = new(Books)
 	/* book 1 描述 */
@@ -57,7 +58,7 @@ func printBook(book *Books) {
 json tag, 转换成json格式时, 使用指定的json名称
 bson tag，转换成bson格式时, 使用指定的bson名称
 */
-func testStructTag()  {
+func testStructTag() {
 	type User struct {
 		UserId   int    `json:"json_id" bson:"bson_id"`
 		UserName string `json:"json_name" bson:"bson_name"`
@@ -73,25 +74,26 @@ func testStructTag()  {
 	fmt.Println(field.Tag.Get("json")) // json_id
 	fmt.Println(field.Tag.Get("bson")) // bson_id
 }
+
 /*
 匿名字段, 所有的内置类型和自定义类型都是可以作为匿名字段的
 当匿名字段是struct时,这个struct所拥有的全部字段都被隐式地引入了当前定义的struct
 */
 type Human struct {
-	name string
-	age int
+	name   string
+	age    int
 	weight int
 }
 
 type Student struct {
-	Human  // 匿名字段, Student包含了Human的所有字段
-	int    // 基础类型的匿名字段
+	Human // 匿名字段, Student包含了Human的所有字段
+	int   // 基础类型的匿名字段
 	// int // 不能同时出现多个相同的匿名字段
 	grade string
-	name string // 与Human中的name重名, 优先访问最外面的属性
+	name  string // 与Human中的name重名, 优先访问最外面的属性
 }
 
-func testStudents()  {
+func testStudents() {
 	// 结构体中初始化结构体
 	student := Student{Human{"Mark", 25, 120}, 0, "6-1", "liujunsheng"}
 	// 修改匿名字段
@@ -106,4 +108,3 @@ func main() {
 	// testStudents()
 	testStructTag()
 }
-

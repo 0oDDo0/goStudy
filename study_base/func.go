@@ -33,6 +33,7 @@ func max(num1 int, num2 int) int { // 等价于num1, num2 int
 func swap1(x string, y string) (string, string) {
 	return y, x
 }
+
 // 最好命名返回值,因为不命名返回值,虽然使得代码更加简洁了,但是会造成生成的文档可读性差
 // 命名了返回值时, 直接return 即可
 func swap2(x string, y string) (m string, n string) {
@@ -40,34 +41,38 @@ func swap2(x string, y string) (m string, n string) {
 	return // 等价于return m, n
 	// return m,n
 }
+
 // 支持变参, 即参数个数不定
-func multi_pra(args...string)  {
+func multi_pra(args ...string) {
 	fmt.Println(args) // args = string的slice
 }
 
 func main() {
-	fmt.Printf("最大值是 : %d\n", max(1, 2))
-	// 函数也可以当做变量来传递
-	var a, b string
-	Swap := swap1
-	a, b = Swap("a", "b")
-	a, b = swap2(a, b)
-	fmt.Println(a, b)
-	multi_pra(a, b)
+	fmt.Println(wrapper()(1)) // 先返回一个函数, 然后在调用函数
+	if false {
+		fmt.Printf("最大值是 : %d\n", max(1, 2))
+		// 函数也可以当做变量来传递
+		var a, b string
+		Swap := swap1
+		a, b = Swap("a", "b")
+		a, b = swap2(a, b)
+		fmt.Println(a, b)
+		multi_pra(a, b)
 
-	slice := []int {1, 2, 3, 4, 5, 7}
-	fmt.Println("slice = ", slice)
-	odd := filter(slice, isOdd)    // 函数当做值来传递了
-	fmt.Println("Odd elements of slice are: ", odd)
-	even := filter(slice, isEven)  // 函数当做值来传递了
-	fmt.Println("Even elements of slice are: ", even)
+		slice := []int{1, 2, 3, 4, 5, 7}
+		fmt.Println("slice = ", slice)
+		odd := filter(slice, isOdd) // 函数当做值来传递了
+		fmt.Println("Odd elements of slice are: ", odd)
+		even := filter(slice, isEven) // 函数当做值来传递了
+		fmt.Println("Even elements of slice are: ", even)
+	}
 }
 
 type testInt func(int) bool // 声明了一个函数类型
 
 // 奇数
 func isOdd(integer int) bool {
-	if integer % 2 == 0 {
+	if integer%2 == 0 {
 		return false
 	}
 	return true
@@ -75,7 +80,7 @@ func isOdd(integer int) bool {
 
 // 偶数
 func isEven(integer int) bool {
-	if integer % 2 == 0 {
+	if integer%2 == 0 {
 		return true
 	}
 	return false
@@ -89,4 +94,11 @@ func filter(slice []int, f testInt) (result []int) {
 		}
 	}
 	return result
+}
+
+// 闭包
+func wrapper() func(i int) int {
+	return func(i int) int {
+		return i + 1
+	}
 }

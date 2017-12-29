@@ -1,16 +1,16 @@
 package main
 
 import (
-	"github.com/deckarep/golang-set"
 	"fmt"
+	"github.com/deckarep/golang-set"
 )
 
 var a = 1
 
-func test()  {
+func test() {
 	a = 2
 }
-func main()  {
+func main() {
 	test()
 	fmt.Println(a)
 	kide := mapset.NewSet(1, 2)
@@ -52,4 +52,3 @@ func main()  {
 	//有多少基数
 	fmt.Println(bonusClasses.Cardinality()) //2
 }
-

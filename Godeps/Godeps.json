@@ -1,0 +1,11 @@
+{
+	"ImportPath": "goStudy",
+	"GoVersion": "go1.8",
+	"GodepVersion": "v79",
+	"Deps": [
+		{
+			"ImportPath": "github.com/orcaman/concurrent-map",
+			"Rev": "2ae17bc4c860c83513ee50feb9746f3e50d7515d"
+		}
+	]
+}

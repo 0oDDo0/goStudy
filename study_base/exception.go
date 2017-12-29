@@ -32,18 +32,39 @@ func Divide(varDividee int, varDivider int) (result int, errorMsg string) {
 	} else {
 		return varDividee / varDivider, ""
 	}
+}
 
+// panic, 更加详细的报告异常, 包括函数调用顺序
+func panic1() {
+	panic2()
+}
+
+func panic2() {
+	panic("panic test")
+}
+
+// 正常情况下panic异常, 只会报告异常位置和错误类型
+func panic3() {
+	panic4()
+}
+func panic4() {
+	3 / 0
 }
 
 func main() {
-
-	// 正常情况
-	if result, errorMsg := Divide(100, 10); errorMsg == "" {
-		fmt.Println("100/10 = ", result)
+	if false {
+		panic3()
+		panic1()
 	}
-	// 当被除数为零的时候会返回错误信息
-	if _, errorMsg := Divide(100, 0); errorMsg != "" {
-		fmt.Println("errorMsg is: ", errorMsg)
+	fmt.Println(2222)
+	if true {
+		// 正常情况
+		if result, errorMsg := Divide(100, 10); errorMsg == "" {
+			fmt.Println("100/10 = ", result)
+		}
+		// 当被除数为零的时候会返回错误信息
+		if _, errorMsg := Divide(100, 0); errorMsg != "" {
+			fmt.Println("errorMsg is: ", errorMsg)
+		}
 	}
-
 }

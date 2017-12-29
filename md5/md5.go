@@ -1,13 +1,13 @@
 package main
 
 import (
-	"os"
 	"crypto/md5"
-	"io"
 	"fmt"
+	"io"
+	"os"
 )
 
-func main()  {
+func main() {
 	testFile := "D:/baiDuYun/Go/goStudy/test.txt"
 	file, inerr := os.Open(testFile)
 	fmt.Printf("1")

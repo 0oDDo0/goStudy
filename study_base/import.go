@@ -1,4 +1,5 @@
 package main
+
 /*
 import_test "fmt", 去GOROOT环境变量指定目录下去加载该模块
 import_test "./model", 相对路径导入,即当前文件同一目录的model目录, 但是不建议使用这种方式
@@ -37,7 +38,7 @@ import (
 	"fmt"
 )
 
-func init()  {
+func init() {
 	fmt.Println("main init")
 }
 func main() {
@@ -47,6 +48,7 @@ func main() {
 	ip.PrintUse()
 	fmt.Println("main")
 }
+
 /*
 config init, 因为config.go中定义了变量, 所以需要先执行config.go
 use init

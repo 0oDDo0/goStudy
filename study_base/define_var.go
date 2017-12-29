@@ -59,8 +59,30 @@ func value_and_ptr() {
 	*ptr2 = 3
 	println(i, ptr1)
 }
+
+// 使用简式声明重复声明变量, 你不能在一个单独的声明中重复声明一个变量,但在多变量声明中这是允许的,其中至少要有一个新的声明变量
+// 重复变量需要在相同的代码块内,否则你将得到一个隐藏变量
+func define_mul_var()  {
+	{
+		a := 1
+		fmt.Println(&a)
+		a,b := 2,3 // a还是原来的a, 地址相同
+		fmt.Println(&a, &b)
+	}
+	{
+		x := 1
+		fmt.Println(x)     // print 1
+		{
+			fmt.Println(x) // print 1
+			x := 2
+			fmt.Println(x) // print 2
+		}
+		fmt.Println(x)     // print １
+	}
+}
 func main() {
-	define_var()
-	value_and_ptr()
-	println("main, hello, author =", author, age, "target =", target, "order =", order)
+	define_mul_var()
+	//define_var()
+	//value_and_ptr()
+	//println("main, hello, author =", author, age, "target =", target, "order =", order)
 }

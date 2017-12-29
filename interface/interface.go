@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"strconv"
 )
+
 /*
 https://github.com/astaxie/build-web-application-with-golang/blob/master/zh/02.6.md
 interface是一组抽象方法的集合,它必须由其他非interface类型实现, 而不能自我实现, 类似于c++中的虚基类
@@ -19,31 +20,33 @@ interface类似于c++中的void*, 可实现同一参数, 传递不同类型的�
 */
 type Human struct {
 	name string
-	age int
+	age  int
 }
 type Student struct {
-	Human //匿名字段
+	Human  //匿名字段
 	school string
 }
 type Employee struct {
-	Human //匿名字段
+	Human   //匿名字段
 	company string
 }
+
 // Human实现SayHi方法
 func (h Human) SayHi() {
 	fmt.Printf("Hi, I am %s, age = %d\n", h.name, h.age)
 }
+
 // Human实现Sing方法
 func (h Human) Sing(song string) {
 	fmt.Println("La la la la...", song)
 }
-func (h Human)eat()  {
+func (h Human) eat() {
 	fmt.Printf("%s is eating", h.name)
 }
 
 //Employee重载Human的SayHi方法
 func (e Employee) SayHi() {
-	fmt.Printf("Hi, I am %s, I work at %s\n", e.name, e.company,)
+	fmt.Printf("Hi, I am %s, I work at %s\n", e.name, e.company)
 }
 
 // Interface Men被Human,Student和Employee实现 , 因为这三个类型都实现了这两个方法
@@ -53,7 +56,7 @@ type Men interface {
 	Sing(song string)
 }
 
-func testInterface()  {
+func testInterface() {
 	student := Student{Human{"david", 15}, "6-0"}
 	employee := Employee{Human{"Tom", 25}, "google"}
 
@@ -76,10 +79,10 @@ func testInterface()  {
 	x := make([]Men, 2)
 	//这三个都是不同类型的元素，但是他们实现了interface同一个接口
 	x[0], x[1] = student, employee
-	for index,value := range x{
+	for index, value := range x {
 		// 只能调用相应的接口, 不能使用student的属性
 		value.SayHi()
-		value.Sing( fmt.Sprintf("%d", index))
+		value.Sing(fmt.Sprintf("%d", index))
 		// value.speak() // 不能访问speak方法
 	}
 }
@@ -93,7 +96,8 @@ func testInterface()  {
 如果一个函数返回interface{},那么也就可以返回任意类型的值
 */
 type nullInterface interface{}
-func testNullInterface()  {
+
+func testNullInterface() {
 	// a, b都为空interface
 	var a nullInterface
 	var b interface{}
@@ -110,10 +114,10 @@ interface函数参数, fmt.Println就是利用这种实现方式实现的, 利�
 任何实现了String方法的类型都能作为参数被fmt.Println调用
 */
 func (h Human) String() string {
-	return "{"+h.name+" - "+strconv.Itoa(h.age)+" age = " + fmt.Sprintf("%d", h.age)+"}"
+	return "{" + h.name + " - " + strconv.Itoa(h.age) + " age = " + fmt.Sprintf("%d", h.age) + "}"
 }
 
-func testArgsInterface()  {
+func testArgsInterface() {
 	h := Human{"ljs", 20}
 	fmt.Println(h)
 }
@@ -125,7 +129,7 @@ type Women interface {
 	Men
 }
 
-func testWomen()  {
+func testWomen() {
 	var women Women
 	women = Student{Human{"ljs", 20}, "6-0"}
 	women.SayHi()

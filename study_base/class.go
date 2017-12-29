@@ -29,30 +29,36 @@ type Rectangle struct {
 type Circle struct {
 	radius float64
 }
+
 // 独立的函数
 func area(r *Rectangle) float64 {
 	return r.width * r.height
 }
+
 // method,  area()是属于Rectangle的方法
 // Rectangle存在以下属性:height,width,area()
-func (r Rectangle) area() (float64){
+func (r Rectangle) area() float64 {
 	return r.height * r.width
 }
+
 // 虽然名字一样, 但是接收者不一样, 所以是不一样的method
-func (c Circle) area() (float64){
+func (c Circle) area() float64 {
 	return math.Pi * c.radius * c.radius
 }
+
 // c *Circle和c Circle,可以认为是同一类型的接收者,编译器会自动将c Circle转换为对应的指针
 // 所以method不可以同名
 // c Circle 为值传递, 不会影响到原始对象
 // c *Circle为引用传递, 会影响到原来的对象
-func (c *Circle) area_ptr() (float64){
+func (c *Circle) area_ptr() float64 {
 	c.radius = 3
 	return math.Pi * c.radius * c.radius
 }
+
 type String string
+
 // 不可以使用string, 报错
-func (i String) area() (String){
+func (i String) area() String {
 	return i + " area"
 }
 

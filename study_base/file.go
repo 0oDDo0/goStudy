@@ -1,15 +1,14 @@
 package main
 
 import (
-	"os"
-	"fmt"
 	"bufio"
-	"strings"
+	"fmt"
+	"os"
 )
 
-func readFile(path string){
+func readFile(path string) {
 	file, err := os.Open(path)
-	if err != nil{
+	if err != nil {
 		fmt.Println(path, "not exist")
 		return
 	}
@@ -18,11 +17,12 @@ func readFile(path string){
 	for {
 		// 包括最后的截止符
 		line, err := br.ReadString('\n')
+		fmt.Println("read line", line)
+
+		// 放最后面, 如果最后一行不含\n, err != nil
 		if err != nil {
 			break
 		}
-		line = strings.TrimSpace(line)
-		fmt.Println("read line", line)
 	}
 }
 func writeFile(filePath string) error {

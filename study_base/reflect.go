@@ -1,8 +1,8 @@
 package main
 
 import (
-	"reflect"
 	"fmt"
+	"reflect"
 )
 
 /*
@@ -14,7 +14,7 @@ import (
     得到实际的值,通过v我们获取存储在里面的值,还可以去改变值
 */
 
-func testReflect()  {
+func testReflect() {
 	var x float64 = 3.4
 	v := reflect.ValueOf(x)
 	fmt.Println("type:", v.Type())
